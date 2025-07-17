@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import kamera from './assets/kamera.jpeg';
 import smartphone from './assets/Smartphone Interactive Display.jpeg';
-const API_URL = "https://testazrul.vercel.app//api/ideas";
+const API_URL = "https://suitmedia-backend.suitdev.com/api/ideas";
 
 export default function IdeasList() {
   const [ideas, setIdeas] = useState([]);
@@ -14,11 +14,11 @@ export default function IdeasList() {
 
   useEffect(() => {
     async function fetchIdeas() {
-      const url = `/api/ideas?page[number]=${page}&page[size]=${size}&append[]=small_image&append[]=medium_image&sort=${sort}`;
+      const url = `${API_URL}?page[number]=${page}&page[size]=${size}&append[]=small_image&append[]=medium_image&sort=${sort}`;
       try {
         const res = await fetch(url, { headers: { Accept: "application/json" } });
         const json = await res.json();
-        setIdeas(json.data);
+        setIdeas(json.data);git
         setTotal(json.meta.total);
       } catch (e) {
         setIdeas([]); // Kosongkan jika error
