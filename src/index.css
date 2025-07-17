@@ -18,7 +18,21 @@ body {
   background: #fd8002 !important;
   box-shadow: none;
   border: none;
-  transition: none;
+  transition: top 0.35s, background 0.35s;
+}
+
+/* Hide saat scroll down, show saat scroll up */
+.main-header.hide {
+  top: -100px;
+  transition: top 0.35s, background 0.35s;
+}
+.main-header.show {
+  top: 0;
+  transition: top 0.35s, background 0.35s;
+}
+/* Transparan saat scroll */
+.main-header.scrolled {
+  background: rgba(253,128,2,0.93) !important;
 }
 
 .header-content.orange-header {
@@ -241,7 +255,6 @@ body {
   .main-header.orange-nav { font-size: 0.95rem; }
   .logo-img img { height: 28px; }
 }
-
 @media (max-width: 500px) {
   .header-content.orange-header { padding: 0.2rem 0.2rem; }
   .ideas-list, .list-controls { padding: 0 0.3rem; }

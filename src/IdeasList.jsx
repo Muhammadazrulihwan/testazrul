@@ -9,24 +9,45 @@ export default function IdeasList() {
   const [size, setSize] = useState(10);
   const [sort, setSort] = useState('-published_at');
   const [total, setTotal] = useState(0);
+  const [isReady, setIsReady] = useState(false);
 
   const totalPages = Math.ceil(total / size);
 
+  // Restore state dari localStorage (hanya sekali waktu awal)
   useEffect(() => {
+    const stored = localStorage.getItem('ideas-list-state');
+    if (stored) {
+      const { page, size, sort } = JSON.parse(stored);
+      setPage(page);
+      setSize(size);
+      setSort(sort);
+    }
+    setIsReady(true);
+  }, []);
+
+  // Persist state ke localStorage setiap kali berubah
+  useEffect(() => {
+    if (!isReady) return;
+    localStorage.setItem('ideas-list-state', JSON.stringify({ page, size, sort }));
+  }, [page, size, sort, isReady]);
+
+  // Fetch data API, tapi tunggu state restored
+  useEffect(() => {
+    if (!isReady) return;
     async function fetchIdeas() {
       const url = `${API_URL}?page[number]=${page}&page[size]=${size}&append[]=small_image&append[]=medium_image&sort=${sort}`;
       try {
         const res = await fetch(url, { headers: { Accept: "application/json" } });
         const json = await res.json();
-        setIdeas(json.data);git
+        setIdeas(json.data);
         setTotal(json.meta.total);
       } catch (e) {
-        setIdeas([]); // Kosongkan jika error
+        setIdeas([]);
         setTotal(0);
       }
     }
     fetchIdeas();
-  }, [page, size, sort]);
+  }, [page, size, sort, isReady]);
 
   function getPageNumbers() {
     const pages = [];
@@ -40,10 +61,12 @@ export default function IdeasList() {
     return pages;
   }
 
-  // Untuk fallback gambar
   function getFallbackImg(idx) {
     return idx % 2 === 0 ? kamera : smartphone;
   }
+
+  // Optional: Jangan render apa-apa sebelum state restored
+  if (!isReady) return null;
 
   return (
     <div style={{ maxWidth: 1320, margin: "32px auto" }}>
@@ -95,7 +118,6 @@ export default function IdeasList() {
                   loading="lazy"
                   className="card-img"
                   onError={e => {
-                    // Jika error load dari API, fallback ke lokal
                     e.target.onerror = null;
                     e.target.src = getFallbackImg(idx);
                   }}
@@ -123,7 +145,7 @@ export default function IdeasList() {
         ))}
       </div>
 
-      {/* Pagination Advance */}
+      {/* Pagination */}
       <div className="pagination">
         {/* First page */}
         <button
