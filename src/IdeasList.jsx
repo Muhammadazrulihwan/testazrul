@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import kamera from './assets/kamera.jpeg';
 import smartphone from './assets/Smartphone Interactive Display.jpeg';
+const API_URL = "https://testazrul.vercel.app//api/ideas";
 
 export default function IdeasList() {
   const [ideas, setIdeas] = useState([]);
