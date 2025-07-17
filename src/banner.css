@@ -1,0 +1,73 @@
+.banner {
+  position: relative;
+  width: 100vw;
+  min-width: 100vw;
+  height: 290px; /* bisa dinaikkan untuk background yang lebih besar ke bawah */
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 0;
+}
+
+.banner-img {
+  position: absolute;
+  top: 0; left: 0; width: 100vw; height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: transform 0.3s cubic-bezier(.42,0,.58,1);
+  filter: brightness(0.83) contrast(1.08);
+  /* optionally: filter: brightness(0.77) blur(0.3px); */
+}
+
+.banner-text {
+  position: absolute;
+  z-index: 2;
+  top: 34%;
+  left: 0; right: 0;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.banner-text h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 0.11em; /* Lebih rapat ke bawah */
+  letter-spacing: 1px;
+  text-shadow: 0 4px 18px #0004;
+}
+
+.banner-text p {
+  margin: 0;
+  margin-top: -2px;    /* Naikkan tulisan sedikit */
+  font-size: 1.18rem;
+  font-weight: 400;
+  text-shadow: 0 3px 12px #0002;
+  letter-spacing: 0.2px;
+}
+
+/* SVG garis putih miring */
+.banner-curve {
+  display: block;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* RESPONSIVE: */
+@media (max-width: 700px) {
+  .banner {
+    height: 120px;
+  }
+  .banner-text h1 {
+    font-size: 1.3rem;
+  }
+  .banner-text p {
+    font-size: 0.92rem;
+  }
+}

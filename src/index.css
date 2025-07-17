@@ -1,0 +1,250 @@
+html, body {
+  width: 100vw;
+  min-width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fafbfc;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* -------------------- HEADER ORANGE NAV ------------------- */
+.main-header.orange-nav {
+  position: fixed;
+  top: 0; left: 0; width: 100%; z-index: 30;
+  background: #fd8002 !important;
+  box-shadow: none;
+  border: none;
+  transition: none;
+}
+
+.header-content.orange-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.6rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-img img {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+.orange-header nav {
+  display: flex;
+  gap: 1.7rem;
+}
+
+.orange-header nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.09rem;
+  padding-bottom: 3px;
+  border-bottom: 3px solid transparent;
+  transition: border 0.22s, color 0.18s;
+}
+
+.orange-header nav a.active,
+.orange-header nav a:hover {
+  color: #fff;
+  border-bottom: 3px solid #fff;
+}
+
+/* -------------- IDEAS LIST CARD STYLE ---------------- */
+.ideas-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1320px;
+  margin: 36px auto 0 auto;
+  padding: 0 2rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px 0 rgba(30,41,59,0.10);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.18s;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 4px 28px 0 rgba(30,41,59,0.14);
+}
+
+.card-img-wrap {
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: #eee;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-content {
+  padding: 18px 16px 16px 16px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-date {
+  font-size: 0.85rem;
+  color: #d87a00;
+  margin-bottom: 7px;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: #202020;
+  line-height: 1.36;
+  margin-bottom: 0.4rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 3.7em;
+}
+
+/* -------------- LIST CONTROLS (Filter + Sort) ---------------- */
+.list-controls {
+  max-width: 1320px;
+  margin: 32px auto 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.96rem;
+}
+
+.list-controls select {
+  margin-left: 8px;
+  padding: 10px 48px 10px 18px;
+  border-radius: 999px;
+  border: 1.8px solid #e1e1e1;
+  background: #fff;
+  font-size: 1.22rem;
+  outline: none;
+  box-shadow: 0 2px 14px 0 rgba(60,60,80,0.09);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: border 0.19s, box-shadow 0.19s;
+  background-image: url("data:image/svg+xml;utf8,<svg width='22' height='22' viewBox='0 0 22 22' fill='gray' xmlns='http://www.w3.org/2000/svg'><path d='M7 9l4 4 4-4' stroke='gray' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  background-size: 26px 26px;
+  font-family: inherit;
+  min-width: 64px;
+  text-align: center;
+}
+
+.list-controls select:focus,
+.list-controls select:hover {
+  border: 2.2px solid #fd8c19;
+  box-shadow: 0 2px 16px 0 rgba(253,140,25,0.14);
+}
+
+/* -------------- PAGINATION ---------------- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin: 32px 0 0 0;
+  font-size: 1.07rem;
+}
+
+.pagination button {
+  background: #fff;
+  border: none;
+  color: #333;
+  min-width: 36px;
+  height: 36px;
+  margin: 0 1px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.16s, color 0.16s, font-weight 0.16s, box-shadow 0.12s;
+  box-shadow: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination button.active {
+  background: #fd8c19;
+  color: #fff;
+  font-weight: bold;
+}
+
+.pagination button:disabled {
+  opacity: 0.27;
+  color: #bbb;
+  cursor: not-allowed;
+  background: #fafbfc;
+}
+
+.pagination .double-arrow {
+  font-size: 1.19rem;
+  padding: 0 2px;
+}
+
+.pagination .dots {
+  cursor: default;
+  font-size: 1.12rem;
+  color: #bbb;
+  background: none;
+  min-width: 10px;
+  user-select: none;
+  margin: 0 2px;
+}
+
+/* -------------- RESPONSIVE ---------------- */
+@media (max-width: 1200px) {
+  .ideas-list, .list-controls { max-width: 1000px; }
+}
+@media (max-width: 1000px) {
+  .ideas-list, .list-controls { max-width: 97vw; }
+  .ideas-list { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .ideas-list { grid-template-columns: 1fr; gap: 14px; padding: 0 0.5rem; }
+  .list-controls, .header-content.orange-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .pagination button { min-width: 28px; height: 28px; font-size: 0.92rem; border-radius: 7px; }
+  .pagination .dots { min-width: 6px; font-size: 0.9rem; }
+  .main-header.orange-nav { font-size: 0.95rem; }
+  .logo-img img { height: 28px; }
+}
+
+@media (max-width: 500px) {
+  .header-content.orange-header { padding: 0.2rem 0.2rem; }
+  .ideas-list, .list-controls { padding: 0 0.3rem; }
+  .orange-header nav { gap: 0.7rem; }
+  .logo-img img { height: 22px; }
+}
